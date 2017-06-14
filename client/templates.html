@@ -1,0 +1,62 @@
+
+<head>
+  <title>Fresh DemoApp</title>
+</head>
+
+<template name="main">
+  <h1>Home</h1>
+  <p>Welcome to my basic website using Meteor!</p>
+  {{> addperson}}
+  <hr>
+  {{> showpeople}}
+</template>
+
+<template name="about">
+  <h1>About</h1>
+  <p>Made by R Matthews</p>
+</template>
+
+<template name="info">
+  <h1>Info</h1>
+  <p>The sole purpose of this website is to make the most basic<br>
+      looking website in the entire world.</p>
+</template>
+
+<template name="addperson">
+  <form>
+    Name: <input type="text" id="nombre"><br>
+    Birthday: <input type="text" id="cumpleanos"><br>
+    <button id="addperson" class="btn btn-danger">Add Person</button>
+  </form>
+</template>
+
+<template name="showpeople">
+  {{#if currentUser}}
+  <ul>
+  {{#each p in peoplelist}}
+    <li>{{> personrow person=p}}</li>
+  {{/each}}
+  </ul>
+  {{else}}
+  <h1>You gotta log in first!</h1>
+  {{/if}}
+</template>
+
+<template name="personrow">
+  {{person.name}} was born in {{p.birthyear}}
+  <button>
+    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+  </button>
+</template>
+
+<template name="layout">
+  <div class="container">
+  {{> loginButtons}}
+  <h1>DemoApp</h1>
+  <a href="/">Home</a>
+  <a href="/about">About</a>
+  <a href="/about/info">Info</a>
+  <hr>
+  {{> yield}}
+  </div>
+</template>
